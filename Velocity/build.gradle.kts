@@ -32,8 +32,8 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api:2.23.1")
     implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.23.1")
 
-    implementation("org.readutf.orchestrator:api-wrapper:1.6.2")
-    implementation("org.readutf.orchestrator:shared:1.6.2")
+    implementation("org.readutf.orchestrator:api-wrapper:1.6.4")
+    implementation("org.readutf.orchestrator:shared:1.6.4")
 
     // add kotlin coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC.2")

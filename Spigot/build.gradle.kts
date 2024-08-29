@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import xyz.jpenilla.resourcefactory.bukkit.BukkitPluginYaml
 
 plugins {
@@ -10,7 +9,7 @@ plugins {
 }
 
 group = "org.readutf.orchestrator"
-version = "1.1.0"
+version = "1.2.0"
 
 repositories {
     mavenLocal()
@@ -24,10 +23,6 @@ repositories {
             create<BasicAuthentication>("basic")
         }
     }
-}
-
-tasks.named<ShadowJar>("shadowJar") {
-    finalizedBy("copyJar")
 }
 
 tasks.register("copyJar") {
@@ -44,8 +39,8 @@ dependencies {
     implementation("com.github.Revxrsal.Lamp:common:3.2.1")
     implementation("com.github.Revxrsal.Lamp:velocity:3.2.1")
 
-    implementation("org.readutf.orchestrator:client:1.6.2")
-    implementation("org.readutf.orchestrator:api-wrapper:1.6.2")
+    implementation("org.readutf.orchestrator:client:1.6.4")
+    implementation("org.readutf.orchestrator:api-wrapper:1.6.4")
 
     implementation("io.github.oshai:kotlin-logging-jvm:5.1.4")
 

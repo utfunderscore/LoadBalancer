@@ -26,8 +26,8 @@ tasks.jar {
 }
 
 dependencies {
-    implementation("org.readutf.orchestrator:client:1.6.2")
-    implementation("org.readutf.orchestrator:api-wrapper:1.6.2")
+    implementation("org.readutf.orchestrator:client:1.6.4")
+    implementation("org.readutf.orchestrator:api-wrapper:1.6.4")
 }
 
 tasks.test {
