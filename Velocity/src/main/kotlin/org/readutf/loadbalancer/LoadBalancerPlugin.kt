@@ -4,7 +4,6 @@ import com.google.inject.Inject
 import com.velocitypowered.api.event.Subscribe
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent
 import com.velocitypowered.api.plugin.Plugin
-import com.velocitypowered.api.plugin.annotation.DataDirectory
 import com.velocitypowered.api.proxy.ProxyServer
 import com.velocitypowered.api.proxy.server.RegisteredServer
 import com.velocitypowered.api.proxy.server.ServerInfo
@@ -16,15 +15,13 @@ import org.readutf.loadbalancer.balancer.orchestrator.OrchestratorLoadBalancer
 import org.readutf.loadbalancer.listener.PlayerJoinBalancer
 import org.readutf.orchestrator.shared.server.ServerAddress
 import java.net.InetSocketAddress
-import java.nio.file.Path
 import java.util.UUID
 
 @Plugin(id = "loadbalancer", name = "LoadBalancer", authors = ["utf_"], version = "1.0.0")
 class LoadBalancerPlugin
     @Inject
     constructor(
-        val proxyServer: ProxyServer,
-        @DataDirectory basePath: Path,
+        private val proxyServer: ProxyServer,
     ) {
         private val logger = KotlinLogging.logger { }
 
@@ -44,10 +41,7 @@ class LoadBalancerPlugin
                 proxyServer.registerServer(
                     ServerInfo(
                         UUID.randomUUID().toString().substring(0, 8),
-                        InetSocketAddress.createUnresolved(
-                            serverAddress.host,
-                            serverAddress.port,
-                        ),
+                        InetSocketAddress(serverAddress.host, serverAddress.port),
                     ),
                 )
             }

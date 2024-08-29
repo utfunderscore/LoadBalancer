@@ -8,6 +8,7 @@ import org.readutf.orchestrator.client.ShepardClient
 import org.readutf.orchestrator.shared.server.ServerAddress
 import org.readutf.orchestrator.wrapper.OrchestratorApi
 import org.readutf.orchestrator.wrapper.types.ContainerPort
+import org.readutf.orchestrator.wrapper.types.NetworkAddress
 import java.net.InetAddress
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -35,17 +36,24 @@ class LoadBalancerClient : JavaPlugin() {
 //        runBlocking {
         val portResponse = runBlocking { orchestratorApi.getPort(containerId) }
         if (!portResponse.isSuccess()) {
-            successfulStartup = false
+            logger.error { "Failed to get container port from orchestrator" }
+            return
         }
+        val ipResponse = runBlocking { orchestratorApi.getIp(containerId) }
+        if (!ipResponse.isSuccess()) {
+            logger.error { "Failed to get container ip from orchestrator" }
+            return
+        }
+
         val port = findPort(portResponse.get())
-        val address = orchestratorApi.get
+        val address = findIp(ipResponse.get())
 
         logger.info { "  * Container port: $port" }
         logger.info { "  * Container address: $port" }
 
         logger.info { "Connecting to orchestrator..." }
 
-        shepardClient = ShepardClient(orchestratorHost, 2980, ServerAddress("localhost", port))
+        shepardClient = ShepardClient(orchestratorHost, 2980, ServerAddress(address, port))
 
         shepardClient.registerGameTypes("lobby")
 
@@ -59,5 +67,7 @@ class LoadBalancerClient : JavaPlugin() {
 //        }
     }
 
-    fun findPort(containerPorts: List<ContainerPort>) = containerPorts[0].publicPort
+    private fun findIp(get: List<NetworkAddress>): String = get[0].ip
+
+    fun findPort(containerPorts: List<ContainerPort>) = containerPorts[0].privatePort
 }
