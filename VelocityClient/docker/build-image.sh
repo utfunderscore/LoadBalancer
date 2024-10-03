@@ -1,0 +1,1 @@
+docker image build -t proxy_balancer:latest . --no-cache

@@ -1,0 +1,1 @@
+{"id":"loadbalancer","name":"LoadBalancer","version":"1.0.0","description":"","authors":["utf"],"dependencies":[],"main":"org.readutf.loadbalancer.LoadBalancerPlugin"}

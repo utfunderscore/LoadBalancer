@@ -1,0 +1,22 @@
+[14:28:51] [main/INFO] [com.velocitypowered.proxy.VelocityServer]: Booting up Velocity 3.3.0-SNAPSHOT (git-2016d148-b436)...
+[14:28:51] [main/INFO] [com.velocitypowered.proxy.VelocityServer]: Loading localizations...
+[14:28:52] [main/INFO] [com.velocitypowered.proxy.network.ConnectionManager]: Connections will use epoll channels, libdeflate (Linux x86_64) compression, OpenSSL 3.x.x (Linux x86_64) ciphers
+[14:28:52] [main/WARN] [com.velocitypowered.proxy.config.VelocityConfiguration]: Player info forwarding is disabled! All players will appear to be connecting from the proxy and will have offline-mode UUIDs.
+[14:28:52] [main/INFO] [com.velocitypowered.proxy.VelocityServer]: Loading plugins...
+[14:28:52] [main/INFO] [com.velocitypowered.proxy.plugin.VelocityPluginManager]: Loaded plugin loadbalancer 1.0.0 by utf
+[14:28:52] [main/INFO] [com.velocitypowered.proxy.VelocityServer]: Loaded 2 plugins
+[14:28:52] [LoadBalancer - Task Executor #0/ERROR] [com.velocitypowered.proxy.event.VelocityEventManager]: Couldn't pass ProxyInitializeEvent to loadbalancer 1.0.0
+java.lang.NullPointerException: getenv(...) must not be null
+	at org.readutf.loadbalancer.balancer.orchestrator.OrchestratorLoadBalancer.<init>(OrchestratorLoadBalancer.kt:14) ~[?:?]
+	at org.readutf.loadbalancer.LoadBalancerPlugin.onInit(LoadBalancerPlugin.kt:29) ~[?:?]
+	at org.readutf.loadbalancer.Lmbda$1.execute(Unknown Source) ~[?:?]
+	at com.velocitypowered.proxy.event.UntargetedEventHandler$VoidHandler.lambda$buildHandler$0(UntargetedEventHandler.java:56) ~[436.jar:3.3.0-SNAPSHOT (git-2016d148-b436)]
+	at com.velocitypowered.proxy.event.VelocityEventManager.fire(VelocityEventManager.java:676) ~[436.jar:3.3.0-SNAPSHOT (git-2016d148-b436)]
+	at com.velocitypowered.proxy.event.VelocityEventManager.lambda$fire$5(VelocityEventManager.java:541) ~[436.jar:3.3.0-SNAPSHOT (git-2016d148-b436)]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:?]
+	at java.base/java.lang.Thread.run(Unknown Source) [?:?]
+[14:28:52] [Netty epoll Boss #0/ERROR] [com.velocitypowered.proxy.network.ConnectionManager]: Can't bind to /0.0.0.0:25565
+io.netty.channel.unix.Errors$NativeIoException: bind(..) failed: Address already in use
+[14:28:52] [main/INFO] [com.velocitypowered.proxy.Velocity]: Done (0.55s)!
+[15:01:40] [Shutdown thread/INFO] [com.velocitypowered.proxy.VelocityServer]: Shutting down the proxy...
